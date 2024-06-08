@@ -1,7 +1,7 @@
 import {Models} from 'appwrite';
 import Loader from './Loader';
 
-import { searchPosts } from '@/lib/appwrite/api';
+
 import GridPostList from './GridPostList';
 
 type SearchResultsProps = {
