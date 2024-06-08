@@ -1,15 +1,28 @@
-import {Models} from 'appwrite';
+
 import Loader from './Loader';
 
 
 import GridPostList from './GridPostList';
 
-type SearchResultsProps = {
-    isSEARCHFetching : boolean;
-    searchedPosts: Models.Document[];
+// type SearchResultsProps = {
+//     isSEARCHFetching : boolean;
+//     searchedPosts: Models.Document[];
 
-}
-
+// }
+type Document = {
+    $id: string;
+    // Other properties...
+  };
+  
+  type DocumentList = {
+    documents: Document[];
+  };
+  
+  interface SearchResultsProps {
+    isSearchFetching: boolean;
+    searchedPosts?: DocumentList;
+  }
+  
 const SearchResults = ({isSearchFetching, searchedPosts}: 
      SearchResultsProps) => {
         if(isSearchFetching) return <Loader/>
@@ -25,4 +38,4 @@ const SearchResults = ({isSearchFetching, searchedPosts}:
         )
     }
 
-    export default SearchResults;
+    export default SearchResults

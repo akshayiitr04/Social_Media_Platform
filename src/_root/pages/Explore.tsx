@@ -40,18 +40,18 @@ const Explore = () => {
     if (inView && !searchValue) {
       fetchNextPage();
     }
-  }, [InView, searchValue]);
-
+  }, [inView, searchValue]);
+  
   if (!posts)
     return (
       <div className="flex-center w-full h-full">
         <Loader />
       </div>
     );
-
+  
   const shouldShowSearchResults = searchValue !== "";
   const shouldShowPosts = !shouldShowSearchResults && 
-    posts.pages.every((item) => item.documents.length === 0);
+    posts.pages.every((item) => item && item.documents.length === 0);
 
   return (
     <div className="explore-container">
@@ -92,19 +92,26 @@ const Explore = () => {
       </div>
 
       <div className="flex flex-wrap gap-9 w-full max-w-5xl">
-        {shouldShowSearchResults ? (
-          <SearchResults
-            isSearchFetching={isSearchFetching}
-            searchedPosts={searchedPosts}
-          />
-        ) : shouldShowPosts ? (
-          <p className="text-light-4 mt-10 text-center w-full">End of posts</p>
-        ) : (
-          posts.pages.map((item, index) => (
-            <GridPostList key={`page-${index}`} posts={item.documents} />
-          ))
-        )}
-      </div>
+  {shouldShowSearchResults ? (
+    <SearchResults
+      isSearchFetching={isSearchFetching}
+      searchedPosts={searchedPosts}
+    />
+  ) : shouldShowPosts ? (
+    <p className="text-light-4 mt-10 text-center w-full">End of posts</p>
+  ) : (
+    posts && posts.pages && posts.pages.length > 0 ? (
+      posts.pages.map((item, index) => 
+        item ? (
+          <GridPostList key={`page-${index}`} posts={item.documents} />
+        ) : null // This handles the case where item is undefined
+      )
+    ) : (
+      <p className="text-light-4 mt-10 text-center w-full">No posts available</p>
+    )
+  )}
+</div>
+
 
        {hasNextPage && !searchValue && (
        <div ref={ref} className="mt-10"> 
