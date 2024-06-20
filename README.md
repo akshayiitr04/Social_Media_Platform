@@ -73,15 +73,23 @@ Frontend Setup
 
 ## User Authentication
 Sign Up: Navigate to the Sign Up page, fill out the form, and submit.
+
 Sign In: Navigate to the Sign In page, enter your credentials, and submit.
+
 Post Management
 Create Post: Use the form on the home page or a dedicated page to create a new post.
+
 Read Posts: Browse posts on the home page or explore page.
+
 Update Post: Edit your existing posts by navigating to the post detail and clicking on the edit button.
+
 Delete Post: Remove your posts by clicking the delete button on the post detail.
+
 Form Validation
 Sign Up/Sign In Forms: Utilize React Hook Form and Zod for schema validation to ensure data integrity.
+
 Post Forms: Reusable form components with validation logic encapsulated.
+
 Contributing
 Contributions are welcome! Please follow these steps to contribute:
 
